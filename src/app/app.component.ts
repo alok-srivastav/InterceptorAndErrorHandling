@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TestServiceService } from './test-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TestDemo';
+
+  constructor(private testServiceService: TestServiceService) {}
+
+  fetch() {
+    this.testServiceService.fetch().subscribe(data => {
+      console.log(data);
+    },
+    error=> {
+      debugger;
+      console.log('app component error!' + JSON.stringify(error));
+    });
+  }
 }
